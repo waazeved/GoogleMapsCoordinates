@@ -9,4 +9,6 @@ import br.com.gmc.model.entities.Coordinate;
 public interface ICoordinateService extends IDataService<Coordinate, Long> {
 
 	List<CoordinateDto> findByShapeId(Long shapeId);
+
+	String geoJsonByShapeId(Long shapeId);
 }

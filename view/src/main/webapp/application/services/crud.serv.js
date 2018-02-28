@@ -9,8 +9,8 @@ define(['./module'], function (services) {
             		}
             	},
             	coordinate: {
-            		findByShapeId: function(shapeId) {
-            			return rest.get(BASE_PATH + 'coordinate/findByShapeId/' + shapeId);
+            		geoJsonByShapeId: function(shapeId) {
+            			return rest.get(BASE_PATH + 'coordinate/geoJsonByShapeId/' + shapeId);
             		}
             	}
 

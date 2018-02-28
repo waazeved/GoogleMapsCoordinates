@@ -28,11 +28,46 @@ public class CoordinateService extends AbstractDataService<Coordinate, Long> imp
 	public JpaRepository<Coordinate, Long> getRepository() {
 		return this.coordinateRepository;
 	}
+	
+	
+	@Override
+	public String geoJsonByShapeId(Long shapeId) {
+		List<CoordinateDto> coordinates = findByShapeId(shapeId);
+		String geoJson = "{" + 
+				"  \"type\": \"FeatureCollection\"," + 
+				"  \"features\": [" + 
+				"    {\r\n" + 
+				"      \"type\": \"Feature\"," + 
+				"      \"properties\": {" + 
+				"        \"letter\": \"G\"," + 
+				"        \"color\": \"blue\"," + 
+				"        \"rank\": \"7\"," + 
+				"        \"ascii\": \"71\"" + 
+				"      },\r\n" + 
+				"      \"geometry\": {" + 
+				"        \"type\": \"MultiPolygon\"," + 
+				"        \"coordinates\": [" + 
+				"          [" + 
+				"            <COORDINATES>" + 
+				"          ]" + 
+				"        ]" + 
+				"      }" + 
+				"    }]}";
+		
+		String coordinatesGeoJson = "";
+		for (CoordinateDto coordinateDto : coordinates) {
+			coordinatesGeoJson += "[" + coordinateDto.getLatitude() + "," + coordinateDto.getLongitude() + "],";
+		}
+		
+		geoJson = geoJson.replace("<COORDINATES>", coordinatesGeoJson);
+		
+		return geoJson;
+		
+	}
 
 	@Override
 	public List<CoordinateDto> findByShapeId(Long shapeId) {
 		Shape shape = this.shapeRepository.findOne(shapeId);
-		//List<Coordinate> coordinates = this.coordinateRepository.findByShapeId(shapeId);
 		return this.converter.toDtoList(shape.getCoordinates());
 	}
 
