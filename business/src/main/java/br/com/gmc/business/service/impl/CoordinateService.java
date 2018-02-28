@@ -58,7 +58,7 @@ public class CoordinateService extends AbstractDataService<Coordinate, Long> imp
 		int i = 0;
 		for (CoordinateDto coordinateDto : coordinates) {
 			String separator = ",";
-			if(i == coordinates.size()) {
+			if(i == coordinates.size() - 1) {
 				separator = "";
 			}
 			coordinatesGeoJson += "[" + coordinateDto.getLatitude() + "," + coordinateDto.getLongitude() + "]"+separator;
