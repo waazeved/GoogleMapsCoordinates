@@ -1,0 +1,39 @@
+<div ng-init="init()">
+
+	<div class="row">
+		<div class="col-md-6">
+			<h1 class="title">Shape Google Maps</h1>
+		</div>
+	</div>
+
+	<div class="row" style="padding-top: 2px;">
+			<div class="col-md-6">
+				<div class="input-group">
+					<span class="input-group-addon">
+						Shape
+					</span>
+
+					<select class="form-control" ng-change="chooseShape()" ng-options="s as s.name for s in shapes track by s.id" ng-model="selectedShape">
+
+						<option value=""></option>
+
+					</select>
+
+			    </div>
+			</div>
+	</div>
+	
+	<div class="row" style="padding-top:2px;">
+	
+		<div id="map" style="width:100%;height:700px;"></div>
+		
+		
+	</div>
+	
+	
+
+
+
+
+</div>
+
