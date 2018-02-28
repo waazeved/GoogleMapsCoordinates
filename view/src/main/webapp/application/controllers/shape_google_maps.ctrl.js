@@ -34,7 +34,7 @@ define([ 'app' ], function(app) {
 
 		        var map = new google.maps.Map(document.getElementById("map"), mapProp);
 
-		        map.data.loadGeoJson('http://localhost:8080/google-maps-coordinate-view/geoJsonByShapeId/'+shapeId);
+		        map.data.loadGeoJson('http://localhost:8080/google-maps-coordinate-view/coordinate/geoJsonByShapeId/'+shapeId);
 		};
 		
 
