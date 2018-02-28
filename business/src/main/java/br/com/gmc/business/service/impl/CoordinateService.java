@@ -55,8 +55,14 @@ public class CoordinateService extends AbstractDataService<Coordinate, Long> imp
 				"    }]}";
 		
 		String coordinatesGeoJson = "";
+		int i = 0;
 		for (CoordinateDto coordinateDto : coordinates) {
-			coordinatesGeoJson += "[" + coordinateDto.getLatitude() + "," + coordinateDto.getLongitude() + "],";
+			String separator = ",";
+			if(i == coordinates.size()) {
+				separator = "";
+			}
+			coordinatesGeoJson += "[" + coordinateDto.getLatitude() + "," + coordinateDto.getLongitude() + "]"+separator;
+			i++;
 		}
 		
 		geoJson = geoJson.replace("<COORDINATES>", coordinatesGeoJson);
